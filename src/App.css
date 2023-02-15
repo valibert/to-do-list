@@ -2,12 +2,13 @@
 
 :root {
   /* Gaps */
-  --gap-big: 2em;
-  --gap-regular: 1em;
   --gap-tiny: 0.5em;
+  --gap-regular: 1em;
+  --gap-big: 2em;
 
   /* Colors */
-  --color-primary: #ffb05b;
+  --color-primary: #ff5733;
+  --color-primary-lighter: #FF6C4D;
   --color-dark: #33262a;
   --color-dark-lighter: #80777a;
   --color-cream: #f2ede7;
@@ -16,28 +17,27 @@
   /* Gradients */
   --gradient: linear-gradient(
     90deg,
-    rgba(255, 176, 91, 1) 0%,
-    rgba(114, 237, 118, 1) 25%,
-    rgba(53, 240, 197, 1) 50%,
-    rgba(137, 220, 255, 1) 75%,
-    rgba(203, 152, 255, 1) 100%
+    rgba(199, 0, 57, 1) 0%,
+    rgba(255, 87, 51, 1) 50%,
+    rgba(255, 195, 0, 1) 100%
   );
-
   --gradient-hover: linear-gradient(
     90deg,
-    rgba(255, 176, 91, 1) 20%,
-    rgba(114, 237, 118, 1) 35%,
-    rgba(53, 240, 197, 1) 50%,
-    rgba(137, 220, 255, 1) 65%,
-    rgba(203, 152, 255, 1) 80%
+    rgba(199, 0, 57, 1) 20%,
+    rgba(255, 87, 51, 1) 50%,
+    rgba(255, 195, 0, 1) 80%
   );
 
   /* Shadows */
   --shadow-tiny: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 
   /* Fonts */
-  --font-regular: "Poppins", sans-serif;
   --font-logo: "Kaushan Script", "Poppins", sans-serif;
+  --font-regular: "Poppins", sans-serif;
+}
+
+::placeholder {
+  color: var(--color-dark-lighter);
 }
 
 html {
@@ -48,22 +48,22 @@ body {
   background-color: var(--color-cream);
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .to-do-list {
   display: grid;
   grid-template-rows: 1fr max-content;
   min-height: 100vh;
 }
 
-h1 {
+.to-do-list h1 {
   text-align: center;
   padding: var(--gap-tiny);
   color: var(--color-dark);
   font-family: var(--font-logo);
   font-size: 3em;
-}
-
-button:hover {
-  cursor: pointer;
 }
 
 .task-list ul {
@@ -84,13 +84,11 @@ button:hover {
 
 .task-list ul li h3 {
   grid-row: 1;
-  grid-column: 1;
   color: var(--color-dark);
 }
 
 .task-list ul li p {
   grid-row: 2;
-  grid-column: 1;
   color: var(--color-dark-lighter);
 }
 
@@ -98,7 +96,7 @@ button:hover {
   cursor: pointer;
 }
 
-form {
+.new-task {
   display: flex;
   flex-direction: column;
   gap: var(--gap-tiny);
@@ -106,12 +104,12 @@ form {
   background-color: var(--color-light);
 }
 
-form h2 {
+.new-task h2 {
   text-align: center;
   color: var(--color-dark);
 }
 
-form input {
+.new-task input {
   height: 40px;
   border: none;
   border-radius: 40px;
@@ -119,7 +117,11 @@ form input {
   background-color: var(--color-cream);
 }
 
-form button {
+.new-task input:focus {
+  outline-color: var(--color-primary);
+}
+
+.new-task button {
   height: 40px;
   border: none;
   border-radius: 40px;
@@ -129,14 +131,29 @@ form button {
   font-weight: 700;
 }
 
-form input:focus {
-  outline-color: var(--color-primary);
-}
-
-::placeholder {
-  color: var(--color-dark-lighter);
-}
-
-form button:hover {
+.new-task button:hover {
   background: var(--gradient-hover);
+}
+
+.tag {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-tiny);
+  color: var(--color-dark);
+  font-size: 14px;
+}
+
+.tag a {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.tag a:hover {
+  text-decoration: underline;
+}
+
+.tag img {
+  width: 22px;
+  height: 22px;
 }
