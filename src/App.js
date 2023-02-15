@@ -10,14 +10,18 @@ function App() {
   // STATE
   const [tasks, setTasks] = useState([
     {
-      id: 1,
+      id: "0",
       title: "Finish the to-do list",
       details:
-        "I don't need to write more, juste finish it. Hmmm, finally, I just need to write A LOT, just to see if my app works fine or not!",
+        "I don't need to write more, just finish it. Hmmm... Finally I just need to write A LOT, just to see if my app works fine or not!",
     },
-    { id: 2, title: "Work! Work! Work!", details: "I need to work more." },
     {
-      id: 3,
+      id: "1",
+      title: "Work man! Just hustle!",
+      details: "Just need to work more, baby!",
+    },
+    {
+      id: "2",
       title: "I don't know what to write",
       details: "But it's ok, because it's just here to fill!",
     },
@@ -47,11 +51,56 @@ function App() {
     const id = new Date().getTime();
     const title = newTitle;
     const details = newDetails;
-    tasksCopy.push({ id: id, title: title, details: details });
+    tasksCopy.push({ id, title, details });
     setNewTitle("");
     setNewDetails("");
     setTasks(tasksCopy);
+  };
 
+  const handleUp = (id) => {
+    function getTaskPosition(id) {
+      for (let i = 0; i < tasks.length; i++) {
+        const checkId = tasks[i].id;
+        if (checkId === id) {
+          return i;
+        }
+      }
+    }
+
+    if (getTaskPosition(id) !== 0) {
+      const task = tasks[getTaskPosition(id)];
+      const tasksCopy = [...tasks];
+      tasksCopy.splice(
+        getTaskPosition(id),
+        1,
+        tasksCopy[getTaskPosition(id) - 1]
+      );
+      tasksCopy.splice(getTaskPosition(id) - 1, 1, task);
+      setTasks(tasksCopy);
+    }
+  };
+
+  const handleDown = (id) => {
+    function getTaskPosition(id) {
+      for (let i = 0; i < tasks.length; i++) {
+        const checkId = tasks[i].id;
+        if (checkId === id) {
+          return i;
+        }
+      }
+    }
+
+    if (getTaskPosition(id) !== tasks.length - 1) {
+      const task = tasks[getTaskPosition(id)];
+      const tasksCopy = [...tasks];
+      tasksCopy.splice(
+        getTaskPosition(id),
+        1,
+        tasksCopy[getTaskPosition(id) + 1]
+      );
+      tasksCopy.splice(getTaskPosition(id) + 1, 1, task);
+      setTasks(tasksCopy);
+    }
   };
 
   // RENDER
@@ -64,8 +113,16 @@ function App() {
             <li key={task.id}>
               <h3>{task.title}</h3>
               <p>{task.details}</p>
-              <img src={arrowUp} alt="arrow-up" />
-              <img src={arrowDown} alt="arrow-down" />
+              <img
+                src={arrowUp}
+                alt="arrow-up"
+                onClick={() => handleUp(task.id)}
+              />
+              <img
+                src={arrowDown}
+                alt="arrow-down"
+                onClick={() => handleDown(task.id)}
+              />
               <img src={bin} alt="bin" onClick={() => handleDelete(task.id)} />
             </li>
           ))}
