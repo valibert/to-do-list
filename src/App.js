@@ -1,36 +1,23 @@
 import "./App.css";
 import "./reset.css";
+import { useState } from "react";
 import arrowUp from "./arrow-up.svg";
 import arrowDown from "./arrow-down.svg";
 import bin from "./bin.svg";
 import github from "./github.svg";
-import { useState } from "react";
 
 function App() {
-  // STATE
   const [tasks, setTasks] = useState([
     {
-      id: "0",
-      title: "Finish the to-do list",
-      details:
-        "I don't need to write more, just finish it. Hmmm... Finally I just need to write A LOT, just to see if my app works fine or not!",
-    },
-    {
-      id: "1",
-      title: "Work man! Just hustle!",
-      details: "Just need to work more, baby!",
-    },
-    {
-      id: "2",
-      title: "I don't know what to write",
-      details: "But it's ok, because it's just here to fill!",
+      id: "Genesis",
+      title: "Yo! Welcome!",
+      details: "I wish this to-do list will help you reach your goals!",
     },
   ]);
 
   const [newTitle, setNewTitle] = useState("");
   const [newDetails, setNewDetails] = useState("");
 
-  // BEHAVIOR
   const handleDelete = (id) => {
     const tasksCopy = [...tasks];
     const tasksCopyUpdated = tasksCopy.filter((tasks) => tasks.id !== id);
@@ -51,7 +38,11 @@ function App() {
     const id = new Date().getTime();
     const title = newTitle;
     const details = newDetails;
-    tasksCopy.push({ id, title, details });
+    if (newTitle === "" && newDetails !== "") {
+      tasksCopy.push({ id, title: details, details: "" });
+    } else {
+      tasksCopy.push({ id, title, details });
+    }
     setNewTitle("");
     setNewDetails("");
     setTasks(tasksCopy);
@@ -103,7 +94,6 @@ function App() {
     }
   };
 
-  // RENDER
   return (
     <div className="to-do-list">
       <div className="task-list">
