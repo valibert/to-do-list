@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/to-do-list/static/css/main.8efad8a2.css",
+    "main.js": "/to-do-list/static/js/main.525650ed.js",
+    "static/js/787.34d05ddd.chunk.js": "/to-do-list/static/js/787.34d05ddd.chunk.js",
+    "index.html": "/to-do-list/index.html",
+    "static/media/github.svg": "/to-do-list/static/media/github.5d84972989b0e19b17b4c2dd52b3644e.svg",
+    "static/media/bin.svg": "/to-do-list/static/media/bin.a9cff4441b4c9e3a7ced754cf32fb3fa.svg",
+    "static/media/arrow-up.svg": "/to-do-list/static/media/arrow-up.64ca9c5bb93136c7b434caa3b4c43e65.svg",
+    "static/media/arrow-down.svg": "/to-do-list/static/media/arrow-down.16d2ce58bcb54cb0ec7a340c5995a45d.svg",
+    "main.8efad8a2.css.map": "/to-do-list/static/css/main.8efad8a2.css.map",
+    "main.525650ed.js.map": "/to-do-list/static/js/main.525650ed.js.map",
+    "787.34d05ddd.chunk.js.map": "/to-do-list/static/js/787.34d05ddd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8efad8a2.css",
+    "static/js/main.525650ed.js"
+  ]
+}
