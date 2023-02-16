@@ -118,7 +118,8 @@ function App() {
           ))}
         </ul>
       </div>
-      <form action="submit" className="new-task" onSubmit={handleSubmit}>
+      <div className="new-task">
+      <form action="submit" className="container" onSubmit={handleSubmit}>
         <h2>Create new task</h2>
         <input
           className="title"
@@ -140,6 +141,7 @@ function App() {
           <a href="https://github.com/valibert">Valentin B.B.</a>
         </p>
       </form>
+      </div>
     </div>
   );
 }
