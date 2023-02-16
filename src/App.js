@@ -1,10 +1,11 @@
 import "./App.css";
 import "./reset.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import arrowUp from "./arrow-up.svg";
 import arrowDown from "./arrow-down.svg";
 import bin from "./bin.svg";
 import github from "./github.svg";
+import localforage from "localforage";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -17,6 +18,18 @@ function App() {
 
   const [newTitle, setNewTitle] = useState("");
   const [newDetails, setNewDetails] = useState("");
+
+  useEffect(() => {
+    localforage.getItem("tasks").then((storedTasks) => {
+      if (storedTasks) {
+        setTasks(storedTasks);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    localforage.setItem("tasks", tasks);
+  }, [tasks]);
 
   const handleDelete = (id) => {
     const tasksCopy = [...tasks];
@@ -119,28 +132,28 @@ function App() {
         </ul>
       </div>
       <div className="new-task">
-      <form action="submit" className="container" onSubmit={handleSubmit}>
-        <h2>Create new task</h2>
-        <input
-          className="title"
-          type="text"
-          placeholder="Title"
-          value={newTitle}
-          onChange={handleChange}
-        />
-        <input
-          className="details"
-          type="text"
-          placeholder="Details"
-          value={newDetails}
-          onChange={handleChange}
-        />
-        <button>Add</button>
-        <p className="tag">
-          <img src={github} alt="github" /> Built by{" "}
-          <a href="https://github.com/valibert">Valentin B.B.</a>
-        </p>
-      </form>
+        <form action="submit" className="container" onSubmit={handleSubmit}>
+          <h2>Create new task</h2>
+          <input
+            className="title"
+            type="text"
+            placeholder="Title"
+            value={newTitle}
+            onChange={handleChange}
+          />
+          <input
+            className="details"
+            type="text"
+            placeholder="Details"
+            value={newDetails}
+            onChange={handleChange}
+          />
+          <button>Add</button>
+          <p className="tag">
+            <img src={github} alt="github" /> Built by{" "}
+            <a href="https://github.com/valibert">Valentin B.B.</a>
+          </p>
+        </form>
       </div>
     </div>
   );
